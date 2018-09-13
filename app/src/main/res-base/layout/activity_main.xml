@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <include
+        android:id="@+id/titlebar"
+        layout="@layout/title_bar"/>
+
+    <com.ashokvarma.bottomnavigation.BottomNavigationBar
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RadioGroup
+
+        android:paddingBottom="5dp"
+        android:id="@+id/main_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#F9F7F4"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/menu_item_frontpage"
+            android:drawableTop="@drawable/selector_menu_item_first"
+            style="@style/menu_item_style"
+            android:text="首页"
+            android:checked="false"/>
+        <RadioButton
+            android:id="@+id/menu_item_two"
+            android:drawableTop="@drawable/selector_menu_item_find"
+            style="@style/menu_item_style"
+            android:text="发现"
+            android:checked="false"/>
+
+        <RadioButton
+            android:id="@+id/menu_item_three"
+            android:drawableTop="@drawable/selector_menu_item_contact"
+            style="@style/menu_item_style"
+            android:text="列表"
+            android:checked="false"/>
+        <RadioButton
+            android:id="@+id/menu_personal_center"
+            android:drawableTop="@drawable/selector_menu_item_me"
+            style="@style/menu_item_style"
+            android:text="我的"
+            android:checked="false"/>
+    </RadioGroup>
+
+
+    <RelativeLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
+        android:layout_below="@id/titlebar"
+        android:layout_above="@id/main_bottom" />
+
+</RelativeLayout>

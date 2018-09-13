@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00ffffff</color>
+    <color name="white">#ffffff</color>
+    <color name="red">#ff0000</color>
+
+    <!-- wechat color -->
+    <color name="blackPrimaryDark">#303135</color>
+    <color name="blackPrimary">#393a3f</color>
+    <color name="listitem_title_color">#353535</color>
+    <color name="lighter_black">#bbbbbb</color>
+    <color name="light_black">#999999</color>
+    <color name="wechat_green">#1aad19</color>
+    <color name="wechat_blue">#10aeff</color>
+    <color name="moreActionPWDecor">#191b1c</color>
+    <color name="taobao_orange">#FF5D38</color>
+    <color name="ios_bg">#F0F2F7</color>
+    <color name="wechat_textcolor">#526589</color>
+    <color name="netstatus_item_bg">#ffefed</color>
+    <color name="wechat_vacant_bg">#ebebeb</color>
+    <color name="decor_line">#d9d9d9</color>
+</resources>

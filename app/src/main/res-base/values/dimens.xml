@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="titlebar_button_icon_size">24dp</dimen>
+    <dimen name="bottombar_icon_size">25dp</dimen>
+    <dimen name="bottombar_text_marginbottom">4dp</dimen>
+
+    <dimen name="profile_nickname_tvsize">16sp</dimen>
+    <dimen name="profile_account_tvsize">12sp</dimen>
+
+    <dimen name="swipe_item_menu_width">120dp</dimen>
+
+    <!-- wechat size -->
+    <dimen name="titlebar_height">48dp</dimen>
+    <dimen name="listitem_height">63dp</dimen>
+    <dimen name="listitem_picsize">48dp</dimen>
+    <dimen name="listitem_pic_marginvertical">8dp</dimen>
+    <dimen name="listitem_content_marginhorizontal">14dp</dimen>
+    <dimen name="listitem_time_marginvertical">14dp</dimen>
+    <dimen name="listitem_pic_marginleft">14dp</dimen>
+    <dimen name="listitem_pic_margincontent">12dp</dimen>
+    <dimen name="listitem_content_marginRightest">66dp</dimen>
+    <dimen name="listitem_title_margindsc">3dp</dimen>
+    <dimen name="listitem_title_textsize">16sp</dimen>
+    <dimen name="listitem_dsc_textsize">13sp</dimen>
+    <dimen name="listitem_time_textsize">12sp</dimen>
+    <dimen name="moreAction_pw_width">200dp</dimen>
+    <dimen name="moreAction_pw_item_height">48dp</dimen>
+    <dimen name="netstatus_item_height">47dp</dimen>
+    <dimen name="netstatus_item_marginstart">17dp</dimen>
+    <dimen name="netstatus_item_drawablepadding">12dp</dimen>
+    <dimen name="netstatus_item_textsize">14sp</dimen>
+    <dimen name="setting_item_height">48dp</dimen>
+    <dimen name="setting_item_paddingstart">14dp</dimen>
+    <dimen name="setting_item_paddingend">14dp</dimen>
+    <dimen name="setting_vacantDecorHeight">20dp</dimen>
+    <dimen name="setting_item_iv_size">18dp</dimen>
+    <dimen name="setting_item_textsize">14sp</dimen>
+    <dimen name="decor_height">1px</dimen>
+</resources>

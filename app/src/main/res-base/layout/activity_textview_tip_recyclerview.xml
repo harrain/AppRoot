@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <include
+        android:id="@+id/titlebar"
+        layout="@layout/title_bar"/>
+
+    <TextView
+        android:id="@+id/ac_tip_tv"
+        android:layout_below="@id/titlebar"
+        android:text="网络中断，请检查网络..."
+        android:textSize="14sp"
+        android:textColor="@color/red"
+        android:gravity="center_horizontal"
+        android:background="@color/colorPrimary"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ac_tip_rv"
+        android:layout_below="@id/ac_tip_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</RelativeLayout>

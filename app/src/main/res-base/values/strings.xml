@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="net_notconnect">无法连接网络，请检查您的网络设置</string>
+    <string name="net_cannotuse">网络连接不可用</string>
+    <string name="reload">重新加载</string>
+    <string name="loading">正在加载中...请稍候</string>
+
+    <string name="feedback_tip">请填写问题描述</string>
+    <string name="feedback_tip1">请填写10个字以上的问题描述以便我们提供更好的帮助</string>
+    <string name="btn_sumbit">提交</string>
+
+    <string name="locat_set_tip">在设置-应用-评价中开启定位权限，以正常使用地图功能</string>
+    <string name="toset">去设置</string>
+</resources>

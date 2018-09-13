@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 底部导航菜单项属性的style-->
+    <style name="menu_item_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:drawablePadding">0px</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textColor">@color/main_botton_text_color</item>
+    </style>
+
+    <!-- +菜单左上角-->
+    <style name="list_decoration_theme">
+        <item name="android:background">@color/moreActionPWDecor</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+    </style>
+
+    <style name="appTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/blackPrimary</item>
+        <item name="colorPrimaryDark">@color/blackPrimaryDark</item>
+        <item name="colorAccent">@color/wechat_green</item>
+    </style>
+</resources>

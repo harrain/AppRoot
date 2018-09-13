@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:background="@color/wechat_vacant_bg"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_marginTop="20dp"
+        android:id="@+id/feedback_plain"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/listitem_content_marginhorizontal"
+        android:paddingEnd="@dimen/listitem_content_marginhorizontal"
+        >
+
+        <EditText
+            android:id="@+id/feedback_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:ems="100"
+            android:gravity="top"
+            android:hint="@string/feedback_tip1"
+            android:inputType="textMultiLine"
+            android:textCursorDrawable="@drawable/edittext_cursor_normal"
+            android:textColor="@color/blackPrimaryDark"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/feedback_limit"
+            android:layout_gravity="end"
+            android:text="0/100"
+            android:textSize="14sp"
+            android:textColor="@color/light_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
+
+    <Button
+        android:textSize="18sp"
+        android:onClick="upload"
+        android:textColor="@color/white"
+        android:background="@drawable/shape_solid_button_green_bg"
+        android:text="提交"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
