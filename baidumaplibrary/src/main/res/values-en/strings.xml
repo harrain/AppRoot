@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+
+    <string name="tb_locationInfo">LocationInfo</string>
+    <string name="ocationtext">[Location]</string>
+    <string name="next">下一步</string>
+</resources>

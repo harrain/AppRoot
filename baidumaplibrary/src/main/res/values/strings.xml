@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+
+    <string name="tb_locationInfo">位置信息</string>
+    <string name="locationtext">[位置]</string>
+    <string name="next">下一步</string>
+</resources>

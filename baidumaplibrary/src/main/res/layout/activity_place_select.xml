@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="baidumapsdk.demo.PlaceSelectActivity">
+
+    <include
+        layout="@layout/map_title_bar"
+        android:id="@+id/map_tb"
+        />
+
+    <fragment
+        android:id="@+id/ac_placeselect_mapf"
+        android:layout_below="@id/map_tb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="baidumapsdk.demo.widget.MapFragment"
+        />
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:id="@+id/bg_navigate_iv"
+        android:layout_centerInParent="true"
+        android:src="@drawable/overlay_red_ding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:text="@string/next"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:background="@color/wechat_green"
+        android:id="@+id/place_poi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

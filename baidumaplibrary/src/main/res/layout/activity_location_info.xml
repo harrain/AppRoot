@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="baidumapsdk.demo.LocationInfoActivity">
+
+    <include
+        layout="@layout/map_title_bar"
+        android:id="@+id/map_tb"
+        />
+
+    <RelativeLayout
+        android:id="@+id/ac_loc_rl"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:text="@string/locationtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:id="@+id/ac_loc_const"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addresstext"
+            android:layout_below="@id/ac_loc_const"
+            android:layout_marginTop="11dp"
+            android:textColor="#999999"
+            android:textSize="12sp"/>
+
+        <ImageView
+            android:id="@+id/ac_loc_guild"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/guild_btn"/>
+
+    </RelativeLayout>
+
+    <fragment
+        android:id="@+id/ac_loc_mapf"
+        android:layout_below="@id/map_tb"
+        android:layout_above="@id/ac_loc_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="baidumapsdk.demo.widget.MapFragment"
+        />
+
+    <ImageView
+        android:id="@+id/ac_loc_iv"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/locate_btn_selector"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/ac_loc_rl"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"/>
+
+</RelativeLayout>
