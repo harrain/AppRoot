@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="baidumapsdk.demo.PlaceSelectActivity">
+    tools:context="baidumapsdk.demo.activity.PlaceSelectActivity">
 
     <include
         layout="@layout/map_title_bar"

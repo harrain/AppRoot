@@ -37,6 +37,10 @@ public class MapFragmentHelper {
     private BitmapDescriptor qw;
     private String TAG = "MapFragmentHelper";
 
+    public MapFragmentHelper(FragmentActivity activity,@IdRes int id){
+        map1 = (SupportMapFragment) activity.getSupportFragmentManager().findFragmentById(id);
+    }
+
     public MapFragmentHelper(FragmentActivity activity, LatLng latLng, @IdRes int id) {
         MapStatusUpdate u1 = MapStatusUpdateFactory.newLatLng(latLng);
 
@@ -58,17 +62,11 @@ public class MapFragmentHelper {
 
     public MapFragmentHelper(@IdRes int containerViewId, FragmentActivity activity) {
 
-        map1 = SupportMapFragment.newInstance();
+        map1 = new MapFragment();
         activity.getSupportFragmentManager().beginTransaction().replace(containerViewId, map1).commit();
 
     }
 
-    public MapFragmentHelper(@IdRes int containerViewId, android.support.v4.app.FragmentTransaction fragmentTransaction) {
-
-        map1 = new MapFragment();
-        fragmentTransaction.replace(containerViewId, map1);
-
-    }
 
     public MapFragmentHelper(MapFragment mapFragment) {
 
@@ -270,7 +268,7 @@ public class MapFragmentHelper {
      * @param marker 要移除的marker
      */
     public void removeMarker(Marker marker){
-        marker.remove();
+        if (marker!=null)marker.remove();
     }
 
     /**

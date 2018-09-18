@@ -1,4 +1,4 @@
-package baidumapsdk.demo;
+package baidumapsdk.demo.activity;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,14 +13,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.model.LatLng;
 
-import baidumapsdk.demo.helper.LatlngConverterHelper;
+import baidumapsdk.demo.JingWei;
+import baidumapsdk.demo.R;
+import baidumapsdk.demo.helper.GeoCoderHelper;
 import baidumapsdk.demo.helper.LocationRequest;
 import baidumapsdk.demo.helper.MapSPUtil;
 import baidumapsdk.demo.helper.PlaceSelectHelper;
-import baidumapsdk.demo.widget.MapFragment;
+import baidumapsdk.demo.helper.Util;
 import baidumapsdk.demo.widget.MapFragmentHelper;
 
 public class PlaceSelectActivity extends AppCompatActivity {
@@ -44,7 +46,7 @@ public class PlaceSelectActivity extends AppCompatActivity {
     LatLng target;
     Receiver receiver;
     private MapFragmentHelper mapFragmentHelper;
-
+    private JingWei jingWei;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,16 +66,18 @@ public class PlaceSelectActivity extends AppCompatActivity {
         titleTv.setText("选择地点");
 
         Button poi = findViewById(R.id.place_poi);
+        mapFragmentHelper = new MapFragmentHelper(this,R.id.ac_placeselect_mapf);
+        initLocate();
+        initMap();
+
+        jingWei = new JingWei();
+
         poi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (target != null) PlaceSelectHelper.getInstance().getTodoListener().dothis(target);
+                if (target != null) PlaceSelectHelper.getInstance().getTodoListener().dothis(jingWei);
             }
         });
-
-        MapFragment mapFragment = (MapFragment) getSupportFragmentManager().findFragmentById(R.id.ac_placeselect_mapf);
-        mapFragmentHelper = new MapFragmentHelper(mapFragment);
-        initLocate();
 
         receiver = new Receiver();
         registerReceiver(receiver, new IntentFilter("FINISH_PLACESELECTACTIVITY"));
@@ -89,13 +93,48 @@ public class PlaceSelectActivity extends AppCompatActivity {
             mapFragmentHelper.setLocDataForMap(lat,lng,0,90,mapFragmentHelper.getMap());
         }
         //开启定位
-        LocationRequest.getInstance(this).startLocate(new LocationRequest.LocationInfoListener() {
+        LocationRequest.getInstance(Util.getApplicationContext()).requestPermissionToLocate(this,new LocationRequest.LocationInfoListener() {
             @Override
             public void onLocationInfo(double lat, double lng, float radius) {
                 mCurrentLat = lat;
                 mCurrentLon = lng;
                 mCurrentAccracy = radius;
                 mapFragmentHelper.setLocDataForMap(lat,lng,0,90,mapFragmentHelper.getMap());
+            }
+        });
+    }
+    private void initMap(){
+        mapFragmentHelper.showZoomControl(false);
+        mapFragmentHelper.showCompass(false);
+        final GeoCoderHelper geoCoderHelper = new GeoCoderHelper();
+        geoCoderHelper.setReverseLister(new GeoCoderHelper.ReverseGeoCodeAddress() {
+            @Override
+            public void onGetReverseGeoCodeAddress(String address) {
+                jingWei.setLat(target.latitude);
+                jingWei.setLng(target.longitude);
+                jingWei.setAddress(address);
+            }
+        });
+        mapFragmentHelper.getMap().setOnMapStatusChangeListener(new BaiduMap.OnMapStatusChangeListener() {
+            @Override
+            public void onMapStatusChangeStart(MapStatus mapStatus) {
+
+            }
+
+            @Override
+            public void onMapStatusChangeStart(MapStatus mapStatus, int i) {
+
+            }
+
+            @Override
+            public void onMapStatusChange(MapStatus mapStatus) {
+
+            }
+
+            @Override
+            public void onMapStatusChangeFinish(MapStatus mapStatus) {
+                target = mapStatus.target;
+                geoCoderHelper.reverseGeoCode(target);
             }
         });
     }

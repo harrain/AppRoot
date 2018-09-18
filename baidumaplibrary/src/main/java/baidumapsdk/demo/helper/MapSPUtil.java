@@ -50,6 +50,9 @@ public class MapSPUtil {
             editor.putString(LATITUDE,lat).commit();
         }
     }
+    public void saveLatitude(double latitude){
+        saveLatitude(String.valueOf(latitude));
+    }
 
     public String getLongtitude(){
         return sharedPreferences.getString(LONGTITUDE,"0.0");
@@ -64,6 +67,9 @@ public class MapSPUtil {
             Log.i(tag,"lat "+lng);
             editor.putString(LONGTITUDE,lng).commit();
         }
+    }
+    public void saveLongitude(double longitude){
+        saveLongitude(String.valueOf(longitude));
     }
 
     public String getLastLocateTime(){

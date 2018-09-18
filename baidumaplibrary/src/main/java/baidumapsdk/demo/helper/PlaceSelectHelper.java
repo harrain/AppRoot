@@ -3,9 +3,8 @@ package baidumapsdk.demo.helper;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
-import com.baidu.mapapi.model.LatLng;
-
-import baidumapsdk.demo.PlaceSelectActivity;
+import baidumapsdk.demo.activity.PlaceSelectActivity;
+import baidumapsdk.demo.listener.TodoListener;
 
 /**
  * Created by net on 2018/9/7.
@@ -37,7 +36,5 @@ public class PlaceSelectHelper {
         return todoListener;
     }
 
-    public interface TodoListener{
-        void dothis(LatLng latLng);
-    }
+
 }

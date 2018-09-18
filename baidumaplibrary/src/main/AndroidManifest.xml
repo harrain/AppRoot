@@ -18,6 +18,7 @@
     //获取统计数据
     <uses-permission android:name="android.permission.CAMERA" />
     //使用步行AR导航，配置Camera权限
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -32,19 +33,23 @@
 
     <application android:hardwareAccelerated="true">
 
-        <!-- 在这里是生效的 -->
+        <!-- 在这里是生效的 百度地图APIkey替换掉此处的value-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="81xPybmcXKiDGZu1s5MFzO2IbMmrwOaE" />
+            android:value="wvw5cz5zqvp7L8GOijApexvTRKGd3GaT" />
 
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
 
-        <activity android:name=".LocationInfoActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".PlaceSelectActivity"
+        <activity
+            android:name=".activity.LocationInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.PlaceSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.MarkerInfoWindowActivity"
             android:screenOrientation="portrait"/>
     </application>
 

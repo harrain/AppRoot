@@ -1,5 +1,7 @@
 package baidumapsdk.demo.helper;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
@@ -15,6 +17,11 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+
+import baidumapsdk.demo.activity.MarkerInfoWindowActivity;
+import io.reactivex.functions.Consumer;
 
 /**
  * 定位单例类
@@ -26,6 +33,7 @@ public class LocationRequest {
     private Context mContext;
     private LocationFormatListener mListener;
     private LocationInfoListener locationInfoListener;
+    private OnLocateConditionListener mOnLocateConditionListener;
     private static LocationRequest instance;
     private String tag = "LocationRequest";
 
@@ -76,6 +84,7 @@ public class LocationRequest {
     
     /**
      * 一次定位获取单例
+     * @param context application的context
      */
     public static LocationRequest getInstance(Context context) {
         if (instance == null) {
@@ -86,8 +95,34 @@ public class LocationRequest {
         return instance;
     }
 
+    public void requestPermissionToLocate(final Activity activity, final LocationInfoListener listener){
+        if (mOnLocateConditionListener != null && !mOnLocateConditionListener.canLocate()) {
+            return;
+        }
+        mOnLocateConditionListener = null;
+
+        RxPermissions rxPermissions = new RxPermissions(activity);
+        rxPermissions.requestEach(Manifest.permission.ACCESS_FINE_LOCATION).subscribe(new Consumer<Permission>() {
+            @Override
+            public void accept(Permission permission) throws Exception {
+                if (permission.granted){
+                    //允许
+                    startLocate(listener);
+                }else if (permission.shouldShowRequestPermissionRationale){
+                    //拒绝本次权限申请
+                    Log.e(tag,"拒绝本次定位权限申请");
+                }else {
+                    //禁止该项权限
+                    Log.e(tag,"禁止定位权限");
+                    Util.showLocatePermissionTip(activity);
+                }
+            }
+        });
+    }
+
     /**
      * 持续定位获取单例
+     * @param context application的context
      * @param seconds 持续定位间隔的时间
      */
     public static LocationRequest getInstance(Context context,int seconds) {
@@ -116,6 +151,10 @@ public class LocationRequest {
     }
 
     public void startLocate(LocationInfoListener locationListener){
+        if (mOnLocateConditionListener != null && !mOnLocateConditionListener.canLocate()) {//可通过该接口方法在定位前做准备条件，如果返回true，向下执行
+            return;
+        }
+        mOnLocateConditionListener = null;
 
         locationInfoListener = locationListener;
 
@@ -147,8 +186,13 @@ public class LocationRequest {
             if (mListener!=null)mListener.onLocate(mCurrentLat,mCurrentLon);
             if (locationInfoListener!=null) locationInfoListener.onLocationInfo(location.getLatitude(),location.getLongitude(),location.getRadius());
         }
-
-
+    }
+    /**
+     * 实现接口，可以在定位前做准备工作，并决定之后的定位是否执行
+     */
+    public LocationRequest prepareCondition(OnLocateConditionListener listener){
+        mOnLocateConditionListener = listener;
+        return this;
     }
 
     private void releaseLocate(){
@@ -171,5 +215,9 @@ public class LocationRequest {
 
     public interface LocationInfoListener{
         void onLocationInfo(double lat,double lng,float radius);
+    }
+
+    public interface OnLocateConditionListener{
+        boolean canLocate();//true 可以定位； false 不可以定位
     }
 }

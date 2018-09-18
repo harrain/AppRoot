@@ -1,4 +1,4 @@
-package baidumapsdk.demo;
+package baidumapsdk.demo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.baidu.mapapi.model.LatLng;
 
+import baidumapsdk.demo.R;
 import baidumapsdk.demo.helper.LocationRequest;
 import baidumapsdk.demo.helper.MapSPUtil;
 import baidumapsdk.demo.helper.Util;
@@ -106,6 +107,11 @@ public class LocationInfoActivity extends AppCompatActivity {
         addressTv = findViewById(R.id.addresstext);
     }
 
+    /**
+     * 本活动启动方法
+     * @param latlng 经纬度数组
+     * @param address 地理信息描述
+     */
     public static void startActivity(AppCompatActivity context,double[] latlng,String address){
         Intent intent = new Intent(context,LocationInfoActivity.class);
         intent.putExtra("latlng",latlng);
