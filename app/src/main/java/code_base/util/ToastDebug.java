@@ -17,7 +17,7 @@ public class ToastDebug {
 	private static Toast toast = null;
 	private static boolean isToast = true;
 
-	public static void init(Context context){ mContext = context;}
+	private static void init(Context context){ mContext = context;}
 
 	public static void init(Context context,boolean debug){
 		mContext = context;

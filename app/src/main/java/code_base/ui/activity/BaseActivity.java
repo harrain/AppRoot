@@ -1,7 +1,10 @@
 package code_base.ui.activity;
 
+import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -14,11 +17,16 @@ import android.view.inputmethod.InputMethodManager;
 
 
 import com.damon.approot.R;
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import code_base.AppConstants;
 import code_base.util.LogUtils;
 import code_base.util.NetworkUtils;
 import code_base.util.ToastUtil;
+import code_base.util.view.AlertDialogUtil;
+import code_base.util.view.PermissionsUtil;
+import io.reactivex.functions.Consumer;
 
 import java.lang.reflect.Field;
 import java.util.LinkedList;
@@ -36,26 +44,27 @@ public class BaseActivity extends AppCompatActivity {
     public final static List<BaseActivity> mActivities = new LinkedList<BaseActivity>();
     public static BaseActivity activity;
 
-//	private KillAllReceiver receiver;
-//	private class KillAllReceiver extends BroadcastReceiver{
-//
-//		@Override
-//		public void onReceive(Context mContext, Intent intent) {
-//			finish();
-//		}
-//	}
+	private KillAllReceiver receiver;
+	private class KillAllReceiver extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context mContext, Intent intent) {
+			finish();
+		}
+	}
 
     public Context mContext;
     public boolean first;
     public String tag;
 
+    private RxPermissions rxPermissions;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//		receiver=new KillAllReceiver();
-//		IntentFilter filter=new IntentFilter("com.app.killall");
-//		registerReceiver(receiver, filter);
+		receiver=new KillAllReceiver();
+		IntentFilter filter=new IntentFilter("app.killall");
+		registerReceiver(receiver, filter);
         mContext = this;
         tag = getLocalClassName();
 
@@ -64,11 +73,37 @@ public class BaseActivity extends AppCompatActivity {
         }
         internationalizationInitial();
 
-        init();
-        initView();
-        notifyData();
+        requestStoragePermission();
 
     }
+    /**
+     * 请求存储空间权限，自动过滤6.0
+     */
+    private void requestStoragePermission(){
+        getRxpermissions().requestEach(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(new Consumer<Permission>() {
+                    @Override
+                    public void accept(Permission permission) throws Exception {
+                        if (permission.granted){//权限被允许
+                            init();
+                            initView();
+                            notifyData();
+                        }else if (permission.shouldShowRequestPermissionRationale){//本次被拒绝
+                            killAll();
+                        }else {//禁止
+                            PermissionsUtil.showStoragePermissionTip(mContext);
+                        }
+                    }
+                });
+    }
+
+    public RxPermissions getRxpermissions(){
+        if (rxPermissions == null){
+            rxPermissions = new RxPermissions(this);
+        }
+        return rxPermissions;
+    }
+
 
     @Override
     public void onResume() {
@@ -195,10 +230,10 @@ public class BaseActivity extends AppCompatActivity {
             mActivities.remove(this);
         }
         fixInputMethodManagerLeak(this);
-//		if(receiver!=null){
-//			unregisterReceiver(receiver);
-//			receiver=null;
-//		}
+		if(receiver!=null){
+			unregisterReceiver(receiver);
+			receiver=null;
+		}
     }
 
     /**

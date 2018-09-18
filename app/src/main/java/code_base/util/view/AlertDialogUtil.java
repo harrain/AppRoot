@@ -65,6 +65,25 @@ public class AlertDialogUtil {
         builder.create().show();
     }
 
+    public static void showAlertDialogTwo(Context context,String title,String message,String positiveButtonText,String negativeButtonText,final AlertListener listener){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(message);
+        builder.setTitle(title);
+        builder.setPositiveButton(positiveButtonText, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                listener.positiveResult(dialog,which);
+            }
+        });
+        builder.setNegativeButton(negativeButtonText, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
+    }
+
     public static void showTipDialog(Context context,String title,String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(message);

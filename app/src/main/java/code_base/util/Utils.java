@@ -13,7 +13,10 @@ public class Utils {
     private static Context mContext;
     private static boolean debug = true;
 
-    public static void init(Context context){mContext = context;}
+    public static void init(Context context,boolean debugMode){
+        mContext = context;
+        debug = debugMode;
+    }
 
     public static Context getContext(){
         return mContext;

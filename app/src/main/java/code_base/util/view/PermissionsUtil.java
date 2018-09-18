@@ -3,6 +3,7 @@ package code_base.util.view;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -11,6 +12,8 @@ import android.util.Log;
 
 import code_base.AppConstants;
 import code_base.listener.PermissionResultListener;
+
+import com.damon.approot.R;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.io.BufferedReader;
@@ -44,6 +47,37 @@ public class PermissionsUtil {
 
                     }
                 });
+    }
+
+    public static void showLocatePermissionTip(Context context){
+        //在设置-应用-appname-权限中开启位置信息权限，以正常使用查看位置信息、推荐地点等功能（地图定位相关的App功能）
+        showPermissionTip(context,"在设置-应用-"+context.getResources().getString(R.string.app_name)
+                +"-权限中开启位置信息权限，以正常使用查看位置信息、推荐地点等功能");
+    }
+
+    public static void showStoragePermissionTip(Context context){
+        //在设置-应用-appname-权限中开启存储空间权限，以正常使用appname功能
+        showPermissionTip(context,"在设置-应用-"+context.getResources().getString(R.string.app_name)
+                +"-权限中开启存储空间权限，以正常使用"
+                +context.getResources().getString(R.string.app_name)+"功能");
+    }
+
+    public static void showPhoneStoragePermissionTip(Context context){
+        //appname使用电话权限确定本机号码和设备ID，以保证账号登录的安全性。appname不会拨打其他号码或终止通话。\n请在设置-应用-appname-权限中开启电话权限，以正常登录appname
+        showPermissionTip(context,context.getResources().getString(R.string.app_name)
+                +"使用电话权限确定本机号码和设备ID，以保证账号登录的安全性。"+context.getResources().getString(R.string.app_name)
+                +"不会拨打其他号码或终止通话。\n请在设置-应用-"+context.getResources().getString(R.string.app_name)
+                +"-权限中开启电话权限，以正常使用"+context.getResources().getString(R.string.app_name));
+    }
+
+    public static void showPermissionTip(final Context context, String message){
+        AlertDialogUtil.showAlertDialogTwo(context, "权限申请", message, "去设置", "取消", new AlertDialogUtil.AlertListener() {
+            @Override
+            public void positiveResult(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                goToSettingsForRequestPermission(context,context.getPackageName());
+            }
+        });
     }
 
     public static String getManufacturer() {
