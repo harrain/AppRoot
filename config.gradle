@@ -1,0 +1,26 @@
+ext{
+    sdkVersion = [
+            compileSdkVersion : 27,
+            buildToolsVersion : "27.1.1",
+            minSdkVersion     : 19,
+            targetSdkVersion  : 27
+    ]
+
+    supportLibrary = "27.1.1"
+
+    supportAppcompatV7 = 'com.android.support:appcompat-v7:${supportLibrary}'
+    RecyclerView       = 'com.android.support:recyclerview-v7:${supportLibrary}'
+    supportDesign    = 'com.android.support:design:${supportLibrary}'
+
+    dependencies_code = [
+            greendao : "3.2.2",
+    ]
+
+    class_path = [
+            greendao : 'org.greenrobot:greendao-gradle-plugin:${dependencies_code.greendao}',
+    ]
+
+    apply_plugin = [
+            greendao : 'org.greenrobot.greendao',
+    ]
+}
