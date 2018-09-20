@@ -3,6 +3,13 @@
 > 该百度地图SDK API封装库是为了更方便快速的集成调用地图功能,这里的封装只为提供一种思路。目前市面上大多数APP使用到地图的基本上就是显示地图、显示定位、显示点标记marker和信息窗体。
 
 ### 使用说明
+
+- 将该库的文件夹复制粘贴到你的工程目录下
+
+    - 在settings.gradle 添加 ':bmaplib' 用","与其他module隔开 (可观察本工程下的settings.gradle为例)
+
+    - 在app的build.gradle的dependencies标签下 添加 api project(':bmaplib')  (可观察本工程下的app build.gradle为例)
+
 - 申请地图ak,将ak添加到本库的AndroidManifest下的meta-data
 
 > attention: 是本library的AndroidManifest,不是你的APP应用的AndroidManifest

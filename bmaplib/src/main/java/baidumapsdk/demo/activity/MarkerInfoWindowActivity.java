@@ -190,7 +190,7 @@ public class MarkerInfoWindowActivity extends AppCompatActivity {
      */
     private void initlocateBtn() {
         ImageView locateBtn = new ImageView(this);
-        locateBtn.setImageResource(R.drawable.locate_btn);
+        locateBtn.setImageResource(R.drawable.locate_btn_selector);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(Util.dp2px(50), Util.dp2px(50));
         params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
