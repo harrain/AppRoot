@@ -29,8 +29,8 @@ dependencies {
     compileOnly 'com.android.support:appcompat-v7:27.1.1'
     compileOnly 'com.android.support:design:27.1.1'
 
-    compileOnly 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compileOnly 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
 
 //    compile files('libs/BaiduNaviSDK_3.3.1.jar')
 //    compile files('libs/galaxy_lite_lbs_v2.0.jar')
