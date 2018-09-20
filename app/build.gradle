@@ -18,11 +18,11 @@ android {
         }
     }
 
-    sourceSets{
-        main{
+    sourceSets {
+        main {
             res.srcDirs = [
-                    'src/main/res-base',
-                    'src/main/res'
+                    'src/main/res',//系统新建资源文件会自动添加到这个第一个资源目录
+                    'src/main/res-base'
             ]
         }
     }
@@ -51,7 +51,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     implementation 'com.google.code.gson:gson:2.7'
 
-    implementation  'joda-time:joda-time:2.3'//强大的时间处理库
+    implementation 'joda-time:joda-time:2.3'//强大的时间处理库
 
-    api project(':baidumaplibrary')//不能访问jar包的API
+    api project(':bmaplib')//不能访问jar包的API
 }

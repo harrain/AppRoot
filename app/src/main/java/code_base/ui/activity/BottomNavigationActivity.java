@@ -24,7 +24,7 @@ import java.util.List;
 import code_base.util.view.UIConvertUtils;
 import io.reactivex.functions.Consumer;
 
-public class MainActivity extends BaseTitleActivity {
+public class BottomNavigationActivity extends BaseTitleActivity {
 
 
     public RxPermissions rxPermissions;
@@ -45,7 +45,7 @@ public class MainActivity extends BaseTitleActivity {
 
     @Override
     public void initView() {
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_bottomnavigation);
         super.initView();
         mainGroup = (RadioGroup) findViewById(R.id.main_bottom);
         mTBack.setVisibility(View.GONE);

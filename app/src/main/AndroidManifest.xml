@@ -62,7 +62,13 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".MapAboutActivity"></activity>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+
+        <activity android:name=".MapAboutActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

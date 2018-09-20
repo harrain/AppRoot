@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 
+import com.damon.approot.LauncherActivity;
 import com.damon.approot.R;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -24,7 +25,6 @@ import code_base.AppConstants;
 import code_base.util.LogUtils;
 import code_base.util.NetworkUtils;
 import code_base.util.ToastUtil;
-import code_base.util.view.AlertDialogUtil;
 import code_base.util.view.PermissionsUtil;
 import io.reactivex.functions.Consumer;
 
@@ -73,21 +73,21 @@ public class BaseActivity extends AppCompatActivity {
         }
         internationalizationInitial();
 
-        requestStoragePermission();
+        init();
+        initView();
+        notifyData();
 
     }
     /**
      * 请求存储空间权限，自动过滤6.0
      */
-    private void requestStoragePermission(){
+    public void requestStoragePermission(){
         getRxpermissions().requestEach(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(new Consumer<Permission>() {
                     @Override
                     public void accept(Permission permission) throws Exception {
                         if (permission.granted){//权限被允许
-                            init();
-                            initView();
-                            notifyData();
+                            grantTodo();
                         }else if (permission.shouldShowRequestPermissionRationale){//本次被拒绝
                             killAll();
                         }else {//禁止
@@ -96,6 +96,8 @@ public class BaseActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    public void grantTodo(){}
 
     public RxPermissions getRxpermissions(){
         if (rxPermissions == null){
@@ -120,19 +122,21 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onRestart() {
+        Log.i(tag,"onRestart");
         super.onRestart();
         if (AppConstants.LOCALE_CHANGE) {
             LogUtils.i(tag, "onRestart");
             AppConstants.LOCALE_CHANGE = false;
-            restartMain();
+            restart();
         }
+        if (!getRxpermissions().isGranted(Manifest.permission.ACCESS_FINE_LOCATION)) restart();
     }
     /**
      * 重启APP操作
      */
-    public void restartMain() {
+    public void restart() {
         //从后台返回前台重启MainActivity
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, LauncherActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
