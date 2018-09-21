@@ -1,1 +1,1 @@
-include ':app',':baidumaplibrary'
+include ':app', ':bmaplib',':greendao'

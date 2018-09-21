@@ -58,6 +58,7 @@ public class BaseActivity extends AppCompatActivity {
     public String tag;
 
     private RxPermissions rxPermissions;
+    public boolean needPermissStorage = true;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -106,6 +107,12 @@ public class BaseActivity extends AppCompatActivity {
         return rxPermissions;
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(tag, "onStart: ");
+        if (needPermissStorage && !getRxpermissions().isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) restart();
+    }
 
     @Override
     public void onResume() {
@@ -129,7 +136,7 @@ public class BaseActivity extends AppCompatActivity {
             AppConstants.LOCALE_CHANGE = false;
             restart();
         }
-        if (!getRxpermissions().isGranted(Manifest.permission.ACCESS_FINE_LOCATION)) restart();
+
     }
     /**
      * 重启APP操作

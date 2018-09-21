@@ -62,13 +62,14 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask"/>
-
-        <activity android:name=".MapAboutActivity"
-            android:screenOrientation="portrait"/>
-
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MapAboutActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".DBGreendaoActivity"></activity>
     </application>
 
 </manifest>

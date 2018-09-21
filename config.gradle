@@ -8,19 +8,19 @@ ext{
 
     supportLibrary = "27.1.1"
 
-    supportAppcompatV7 = 'com.android.support:appcompat-v7:${supportLibrary}'
-    RecyclerView       = 'com.android.support:recyclerview-v7:${supportLibrary}'
-    supportDesign    = 'com.android.support:design:${supportLibrary}'
+    supportAppcompatV7 = "com.android.support:appcompat-v7:${supportLibrary}" //不能用单引号
+    RecyclerView       = "com.android.support:recyclerview-v7:${supportLibrary}"
+    supportDesign    = "com.android.support:design:${supportLibrary}"
 
-    dependencies_code = [
+    dependenciesCode = [
             greendao : "3.2.2",
     ]
 
-    class_path = [
-            greendao : 'org.greenrobot:greendao-gradle-plugin:${dependencies_code.greendao}',
+    bsclassPath = [
+            greendao : "org.greenrobot:greendao-gradle-plugin:3.2.2",
     ]
 
-    apply_plugin = [
+    applyPlugin = [
             greendao : 'org.greenrobot.greendao',
     ]
 }

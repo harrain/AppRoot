@@ -20,16 +20,19 @@ import baidumapsdk.demo.activity.LocationInfoActivity;
 import baidumapsdk.demo.activity.MarkerInfoWindowActivity;
 import baidumapsdk.demo.helper.PlaceSelectHelper;
 import baidumapsdk.demo.listener.TodoListener;
+import code_base.ui.activity.BaseTitleActivity;
 
 /**
- * 移植使用前，先阅读baidumaplibrary下的README.md
+ * 移植使用前，先阅读bmaplib下的README.md
  */
-public class MapAboutActivity extends AppCompatActivity {
+public class MapAboutActivity extends BaseTitleActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.recyclerview_nofade_noscrollbar);
+    public void initView() {
+
+        setContentView(R.layout.activity_main);
+        super.initView();
+        setmTTitle("baidumap的集成和使用");
 
         final List<Model> models = new ArrayList<>();
         models.add(new Model("选择地点、位置显示且跳转导航",null));

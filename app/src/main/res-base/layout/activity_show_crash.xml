@@ -5,7 +5,7 @@
     android:id="@+id/crash_rl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nettech.statement.util.ShowCrashActivity">
+    >
 
     <ScrollView
         android:layout_width="match_parent"

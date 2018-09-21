@@ -1,5 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+apply from: 'config.gradle'/*在根目录中配置公用供子模块调用*/
+
 buildscript {
 
     repositories {
@@ -8,7 +10,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'
-        
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'//这里不能用rootProject.ext.xxx
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -26,18 +28,4 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-/*在根目录中配置公用供子模块调用*/
-ext{
-    sdkVersion = [
-            compileSdkVersion : 27,
-            buildToolsVersion : "27.1.1",
-            minSdkVersion     : 19,
-            targetSdkVersion  : 27
-    ]
 
-    supportLibrary = "27.1.1"
-
-    supportAppcompatV7 = "com.android.support:appcompat-v7:${supportLibrary}"
-    RecyclerView       = "com.android.support:recyclerview-v7:${supportLibrary}"
-    supportDesign    = "com.android.support:design:${supportLibrary}"
-}

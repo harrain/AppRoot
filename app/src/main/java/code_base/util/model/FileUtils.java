@@ -2,16 +2,20 @@ package code_base.util.model;
 
 import android.content.Context;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 
 /**
  * 文件创建重命名等工具类
  */
 public class FileUtils {
+	static String tag = "FileUtils";
 
 	/**
 	 * 获取sd卡的保存位置
@@ -69,5 +73,24 @@ public class FileUtils {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static File writeFile(InputStream is, String filepath){
+		File file = null;
+		try {
+			file = new File(filepath);
+			FileOutputStream fos = new FileOutputStream(file);
+			byte[] buffer = new byte[1024];
+			int byteCount = 0;
+			while ((byteCount = is.read(buffer)) != -1) {//循环从输入流读取 buffer字节
+				fos.write(buffer, 0, byteCount);//将读取的输入流写入到输出流
+			}
+			fos.flush();//刷新缓冲区
+			is.close();
+			fos.close();
+		}catch (Exception e){
+			Log.e(tag,"writeFile: "+e.getMessage());
+		}
+		return file;
 	}
 }

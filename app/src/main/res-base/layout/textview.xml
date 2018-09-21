@@ -8,6 +8,6 @@
         android:layout_gravity="start|center_vertical"
         android:layout_margin="16dp"
         android:layout_height="wrap_content"
-        android:id="@+id/textview_item"/>
+        android:id="@+id/textview"/>
 
 </LinearLayout>

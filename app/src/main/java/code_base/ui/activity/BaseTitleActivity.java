@@ -26,6 +26,7 @@ public class BaseTitleActivity extends BaseActivity {
     public TextView leftTv;
     public View backDecor;
     public ProgressBar progressBar;
+    private FrameLayout tBack;
 
     @Override
     public void initView() {
@@ -55,8 +56,8 @@ public class BaseTitleActivity extends BaseActivity {
             }
         });
 
-        FrameLayout TBack = (FrameLayout) findViewById(R.id.toolbar_back_fl);
-        TBack.setOnClickListener(new View.OnClickListener() {
+        tBack = (FrameLayout) findViewById(R.id.toolbar_back_fl);
+        tBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBack();
@@ -81,11 +82,13 @@ public class BaseTitleActivity extends BaseActivity {
     }
 
     public void setmTBackHide(){
-        mTBack.setVisibility(View.GONE);
+        tBack.setVisibility(View.GONE);
+        backDecor.setVisibility(View.GONE);
     }
 
     public void setmTMoreHide(){
         mTMore.setVisibility(View.GONE);
+
     }
 
     public void setMoreTvVisible(){

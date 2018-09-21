@@ -30,8 +30,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation rootProject.ext.supportAppcompatV7
+    implementation rootProject.ext.RecyclerView
     implementation rootProject.ext.supportDesign
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
@@ -54,4 +54,5 @@ dependencies {
     implementation 'joda-time:joda-time:2.3'//强大的时间处理库
 
     api project(':bmaplib')//不能访问jar包的API
+    api project(':greendao')
 }

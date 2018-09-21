@@ -16,8 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import code_base.ui.activity.BaseActivity;
+import code_base.ui.activity.BaseTitleActivity;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseTitleActivity {
 
     private List<Model> datas;
     private RecyclerView recyclerView;
@@ -28,12 +29,14 @@ public class MainActivity extends BaseActivity {
 
         datas = new ArrayList<>();
         datas.add(new Model("【惊！太好用了】最快速度使用百度地图",new Intent(this,MapAboutActivity.class)));
+        datas.add(new Model("【惊！太好用了】最快速度使用greendao",new Intent(this,DBGreendaoActivity.class)));
     }
 
     @Override
     public void initView() {
+        setContentView(R.layout.activity_main);
         super.initView();
-        setContentView(R.layout.recyclerview_nofade_noscrollbar);
+        initMainTitleBar();
 
         recyclerView = findViewById(R.id.nofade_nobar_wrap_rv);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -65,6 +68,11 @@ public class MainActivity extends BaseActivity {
             }
         });
         recyclerView.setAdapter(adapter);
+    }
+
+    private void initMainTitleBar(){
+        setmTBackHide();
+        setmTTitle("app功能组件模块化");
     }
 
 }

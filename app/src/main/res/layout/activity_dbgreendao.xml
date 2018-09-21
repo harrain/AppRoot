@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DBGreendaoActivity">
+
+    <Button
+        android:onClick="assetsclick"
+        android:text="读取assets db文件数据存入应用数据库并显示"
+        android:textColor="@color/blackPrimary"
+        android:background="@drawable/shape_stroke_green"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:onClick="insertclick"
+        android:text="插入监听显示"
+        android:textColor="@color/blackPrimary"
+        android:background="@drawable/shape_stroke_lightblack"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/sqlite_gd_rv"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

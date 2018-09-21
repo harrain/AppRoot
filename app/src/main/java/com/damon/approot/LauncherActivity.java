@@ -22,4 +22,10 @@ public class LauncherActivity extends AbstractLauncherActivity {
         startActivity(new Intent(this,MainActivity.class));
         finish();
     }
+
+    @Override
+    protected void onStart() {
+        needPermissStorage = false;
+        super.onStart();
+    }
 }
